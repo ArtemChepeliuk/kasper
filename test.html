@@ -54,9 +54,8 @@
                 owner <strong>{{ car.owner }}</strong>
               </li>
             </ul>
-            <a :href="'tel:car.phone'" v-if="phoneVisibility" class="p-3">{{
-              car.phone
-              }}</a>
+            <a :href="'tel:car.phone'" v-if="phoneVisibility" class="p-3">{{ car.phone }}
+            </a>
             <br />
 
             <button type="button" class="btn btn-outline-success m-3" @click="phoneVisibility = !phoneVisibility"
@@ -69,22 +68,6 @@
         </div>
       </div>
     </div>
-
-    <div class="row" v-if="logs.leght !==0">
-
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <ul class="list-group">
-          <li class="list-group-item" v-for="log in logs" v-bind:class="{
-            'list-group-item-secondary' : log.type === 'cnl'
-            'list-group-item-success' : log.type === 'ok'
-          }">
-            {{ log.text }}
-          </li>
-        </ul>
-      </div>
-
-    </div>
-
     <!-- Modal -->
     <div class="modal fade show" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true" v-if="modalVisibility">
@@ -99,8 +82,6 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Current name - <strong> {{ car.name }}</strong></p>
-            <img :src="car.image" :alt="car.model" class="img-fluid rounded" />
             <ul>
               <li>
                 model <strong>{{ car.model }}</strong>
@@ -112,11 +93,8 @@
                 owner <strong>{{ car.owner }}</strong>
               </li>
             </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" v-on:click="newOrder">Buy</button>
-
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="cancelOrder">Cancel</button>
+            <a :href="'tel:car.phone'" v-if="phoneVisibility" class="p-3">{{ car.phone }}
+            </a>
           </div>
         </div>
       </div>

@@ -6,6 +6,11 @@ const car = (name, model, owner, year, phone, image) => ({
   phone,
   image
 });
+const log = (text, type, date = new Date()) => ({
+  text,
+  type,
+  date
+})
 const cars = [
   car("Ford", "Focus", "Max", 2015, "+38 012 34 56", "img/1/focus.png"),
   car("Ford", "Mondeo", "Kolia", 2018, "+38 0987 65 54", "img/1/mondeo.jpeg"),
@@ -17,6 +22,7 @@ new Vue({
   data: {
     cars: cars,
     car: cars[0],
+    logs: [],
     selectedCarIndex: 0,
     phoneVisibility: false,
     search: '',
@@ -26,7 +32,19 @@ new Vue({
     selectCar(index) {
       this.car = cars[index];
       this.selectedCarIndex = index;
-    }
+    },
+    newOrder() {
+      this.modalVisibility = false
+      this.logs.push(
+        log(`Success order: ${this.car.name} -  ${this.car.model}`, 'ok')
+      )
+    },
+    cancelOrder() {
+      this.modalVisibility = false
+      this.logs.push(
+        log(`canceled order: ${this.car.name} - ${this.car.model}`, 'cnl')
+      )
+    },
   },
   computed: {
     phoneBtntext() {
