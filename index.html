@@ -1,140 +1,153 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Buy Iphone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon.ico"
+      type="image/x-icon"
+    />
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Buy Iphone</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="css.css" />
+  </head>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" media="screen" href="css.css" />
-  <script src="js.js"></script>
-</head>
+  <body>
+    <div class="container pt-5" id="app">
+      <div class="row">
+        <div class="col"><h1>Cars aplication</h1></div>
+      </div>
 
-<body>
+      <div class="row">
+        <div class="col-md-4">
+          <label for="search"> Find your car </label>
+          <input
+            type="text"
+            name="search"
+            class="form-control mt-1"
+            id="search"
+            placeholder="Name, model..."
+            v-model="search"
+          />
 
-  <div class="container pt-5">
-
-    <div class="row">
-      <h1>Iphone Store</h1>
-    </div>
-
-    <div class="row pt-5">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="search">find your phone</label>
-          <input type="text" class="form-control" id="search" placeholder="model, color ...">
-          <hr>
-
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-action list-group-item-info">Iphone SE</li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Iphone 7 plus</li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Iphone 8 plus</li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Iphone X</li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Iphone XR</li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Iphone XS max</li>
+          <hr />
+          <ul class="list-group mt-2">
+            <li
+              v-for="(car, index) of searchCars"
+              class="list-group-item  list-group-item pointer"
+              v-on:click="selectCar(index)"
+              :class="{'active': selectedCarIndex === index}"
+            >
+              {{ car.name }} - {{ car.model }}
+            </li>
           </ul>
         </div>
-      </div>
-      <div class="col-md-8">
+        <div class="col-md-8 pt-3">
+          <div class="row">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <h2>{{ car.name }}</h2>
+              <img
+                :src="car.image"
+                :alt="car.model"
+                class="img-fluid rounded"
+              />
+            </div>
+            <div class="col-md-7">
+              <h5>car details</h5>
 
-        <div class="row">
-          <div class="col-md-5">
-            <h4 class="mb-5">Iphone 7+ <span data-size="128gb">128</span>gb <span>black</span></h4>
+              <ul>
+                <li>
+                  model <strong>{{ car.model }}</strong>
+                </li>
+                <li>
+                  year <strong>{{ car.year }}</strong>
+                </li>
+                <li>
+                  owner <strong>{{ car.owner }}</strong>
+                </li>
+              </ul>
+              <a :href="'tel:car.phone'" v-if="phoneVisibility" class="p-3">{{
+                car.phone
+              }}</a>
+              <br />
 
-            <a href="#" type="button" class="" data-toggle="modal" data-target=".bd-example-modal-xl" title="купить айфон">
-              <img src="img/7-1.jpg" alt="купить айфон" class="img-fluid">
-            </a>
+              <button
+                type="button"
+                class="btn btn-outline-success m-3"
+                @click="phoneVisibility = !phoneVisibility"
+                v-text="phoneBtntext"
+              ></button>
 
-            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                  <div class="text-center scaled-block m-5" >
-                      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                          <div class="carousel-inner text-center">
-                            <div class="carousel-item active text-center " >
-                              <img src="img/7-1.jpg" class=" text-center" alt="купить айфон">
-                            </div>
-                            <div class="carousel-item text-center">
-                              <img src="img/7-2.jpg" class=" text-center" alt="купить айфон">
-                            </div>
-                            <div class="carousel-item text-center">
-                              <img src="img/7-3.jpg" class=" text-center" alt="купить айфон">
-                            </div>
-                          </div>
-                          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only " style="color:aqua;">Previous</span>
-                          </a>
-                          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only" style="color:aqua;">Next</span>
-                          </a>
-                        </div>
-                  </div>
-                </div>
-              </div>
+              <button
+                type="button"
+                class="btn btn-primary"
+                @click="modalVisibility = true"
+              >
+                Buy
+              </button>
             </div>
           </div>
-          <div class="col-md-7">
-            <h5 class="mb-3">Phone details</h5>
-            <button class="btn btn-outline-info m-2" data-size="16">16</button>
-            <button class="btn btn-outline-info  m-2" data-size="32">32</button>
-            <button class="btn btn-outline-info  m-2" data-size="64">64</button>
-            <button class="btn btn-outline-info  m-2" data-size="128">128</button>
-            <button class="btn btn-outline-info  m-2" data-size="256">256</button>
-            <button class="btn btn-outline-info  m-2" data-size="512">512</button>
-            <p class="m-3">Цвет</p>
-            <button type="button" class="btn btn-secondary m-3">&nbsp;</button>
-            <button type="button" class="btn btn-dark m-3">&nbsp;</button>
-            <button type="button" class="btn btn-danger m-3">&nbsp;</button>
-            <button type="button" class="btn btn-warning m-3">&nbsp;</button>
-            <button type="button" class="btn btn-light color-white m-3">&nbsp;</button>
-
-
-            <ul class="pt-3">
-              <li class="mt-3">Дисплей Retina HD 5,5 дюйма </li>
-              <li class="mt-3">Камера Двойная камера 12 Мп с режимом «Портрет» и возможностью записи видео 4K с
-                частотой 30 кадров/с </li>
-              <li class="mt-3">Передняя камера HD-камера FaceTime 7 Мп со вспышкой Retina Flash для отличных селфи </li>
-              <li class="mt-3">Touch ID для безопасной аутентификации</li>
-              <li class="mt-3">Процессор A10 Fusion</li>
-              <li class="mt-3">Объем оперативной памяти 3 Гб
-              </li>
-              <li class="mt-3">Объем встроенной памяти 128 Гб</li>
-            </ul>
-            <p>Не позорься, собирай деньги!!!</p>
-            <button class="btn btn-success mr-3">КУПИТЬ</button>
-            <button class="btn btn-danger">КУПИТЬ В КРЕДИТ</button>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade show"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+        v-if="modalVisibility"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">
+                Do you want buy this car?
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                v-on:click="modalVisibility =false"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">...</div>
           </div>
         </div>
-
       </div>
+
+      <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
     </div>
 
-  </div>
-
-
-
-
-
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-    $('.carousel').carousel({
-      ride: true,
-})
-    </script>
-</body>
 
+    <script src="test.js"></script>
+  </body>
 </html>
