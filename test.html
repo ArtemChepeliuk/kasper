@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Buy Iphone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      href="img/favicon/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="css.css" />
+  </head>
+
+  <body>
+    <div class="container pt-5" id="app">
+      <div class="row">
+        <div class="col"><h1>Cars aplication</h1></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for="search"> Find your car </label>
+          <input
+            type="text"
+            name="search"
+            class="form-control mt-1"
+            id="search"
+            placeholder="Name, model..."
+            v-model="search"
+          />
+
+          <hr />
+          <ul class="list-group mt-2">
+            <li
+              v-for="(car, index) of searchCars"
+              class="list-group-item  list-group-item pointer"
+              v-on:click="selectCar(index)"
+              :class="{'active': selectedCarIndex === index}"
+            >
+              {{ car.name }} - {{ car.model }}
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8 pt-3">
+          <div class="row">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+              <h2>{{ car.name }}</h2>
+              <img
+                :src="car.image"
+                :alt="car.model"
+                class="img-fluid rounded"
+              />
+            </div>
+            <div class="col-md-7">
+              <h5>car details</h5>
+
+              <ul>
+                <li>
+                  model <strong>{{ car.model }}</strong>
+                </li>
+                <li>
+                  year <strong>{{ car.year }}</strong>
+                </li>
+                <li>
+                  owner <strong>{{ car.owner }}</strong>
+                </li>
+              </ul>
+              <a :href="'tel:car.phone'" v-if="phoneVisibility" class="p-3">{{
+                car.phone
+              }}</a>
+              <br />
+
+              <button
+                type="button"
+                class="btn btn-outline-success m-3"
+                @click="phoneVisibility = !phoneVisibility"
+                v-text="phoneBtntext"
+              ></button>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                @click="modalVisibility = true"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade show"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+        v-if="modalVisibility"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">
+                Do you want buy this car?
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                v-on:click="modalVisibility =false"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-backdrop fade show" v-if="modalVisibility"></div>
+    </div>
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="test.js"></script>
+  </body>
+</html>
