@@ -42,7 +42,7 @@ new Vue({
     cancelOrder() {
       this.modalVisibility = false
       this.logs.push(
-        log(`canceled order: ${this.car.name} - ${this.car.model}`, 'cnl')
+        log(`Canceled order: ${this.car.name} - ${this.car.model}`, 'cnl')
       )
     },
   },
@@ -54,6 +54,11 @@ new Vue({
       return this.cars.filter(car => {
         return car.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1 || car.model.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       })
+    }
+  },
+  filters:{
+    date(value){
+      return value.toLocaleString()
     }
   }
 });

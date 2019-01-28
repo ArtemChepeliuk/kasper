@@ -82,7 +82,7 @@
             'list-group-item-success': log.type === 'ok'
           }" 
           >
-            {{ log.text }}
+            {{ log.text }} {{ log.date | date}}
           </li>
         </ul>
       </div>
