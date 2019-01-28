@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Buy Iphone</title>
+  <title>Buy Car</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon" />
 
@@ -70,14 +70,18 @@
       </div>
     </div>
 
-    <div class="row" v-if="logs.leght !==0">
+    <div class="row" v-if="logs.leght !== 0">
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <ul class="list-group">
-          <li class="list-group-item" v-for="log in logs" v-bind:class="{
-            'list-group-item-secondary' : log.type === 'cnl'
-            'list-group-item-success' : log.type === 'ok'
-          }">
+        <ul class="list-group pt-3">
+          <li 
+          v-for="log in logs"
+          class="list-group-item" 
+          :class="{
+            'list-group-item-danger': log.type === 'cnl',
+            'list-group-item-success': log.type === 'ok'
+          }" 
+          >
             {{ log.text }}
           </li>
         </ul>
